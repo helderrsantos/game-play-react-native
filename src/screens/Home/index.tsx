@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, FlatList } from 'react-native';
 
 import { Profile } from '../../componentes/Profile';
+import { ListDivider } from '../../componentes/ListDivider';
 import { ListHeader } from '../../componentes/ListHeader';
 import { ButtonAdd } from '../../componentes/ButtonAdd';
 import { Appointment } from '../../componentes/Appointment';
@@ -12,11 +13,24 @@ import { styles } from './style';
 export function Home() {
     const [category, setCategory] = useState('')
 
-    const appointments = [{
+    const appointments = [
+    {
         id: '1',
         guild: {
             id:'1',
-            name:'Lendários',
+           name:'Lendários',
+            icon: null,
+            owner: true
+        },
+        category:'1',
+        date:'21/06 às 02:40h',
+        description: 'É hoje que vemos chegar ao challenger sem perder uma partida da md10'
+    },
+    {
+        id: '2',
+        guild: {
+            id:'1',
+           name:'Lendários',
             icon: null,
             owner: true
         },
@@ -53,9 +67,11 @@ export function Home() {
                     data={appointments}
                     keyExtractor={item =>item.id}
                     renderItem={({ item }) => (
-                        <Appointment data={item} />
+                    <Appointment data={item} />                    
                     )}
-                
+                ItemSeparatorComponent={() => <ListDivider />}
+                style={styles.matches}
+                showsVerticalScrollIndicator={false}                
                 />
 
                 </View>

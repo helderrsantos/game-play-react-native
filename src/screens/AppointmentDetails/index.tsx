@@ -3,7 +3,7 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 import {Fontisto } from '@expo/vector-icons';
 
 import { 
-    ImageBackground , 
+    ImageBackground, 
     Text, 
     View, 
     FlatList

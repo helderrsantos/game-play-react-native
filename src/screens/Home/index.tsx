@@ -41,7 +41,7 @@ export function Home() {
         category:'1',
         date:'21/06 às 02:40h',
         description: 'É hoje que vemos chegar ao challenger sem perder uma partida da md10'
-    },
+    }, 
 ]
 
     function handleCategorySelect(categoryId: string){
@@ -63,34 +63,30 @@ export function Home() {
                 <ButtonAdd onPress={handleAppointmentCreate}/>
             </View>
 
-            <View>
-                <CategorySelect
+            <CategorySelect
                 categorySelected={category}
                 setCategory={handleCategorySelect}
-                />
+            />
 
-                <View style={styles.content}>
-                    <ListHeader 
-                    title='Partidas agendadas'
-                    subtitle='Total 6'                    
-                    />
+            <ListHeader 
+                title='Partidas agendadas'
+                subtitle='Total 6'                    
+            />
 
-                <FlatList
-                    data={appointments}
-                    keyExtractor={item =>item.id}
-                    renderItem={({ item }) => (
-                    <Appointment 
-                        data={item}
-                        onPress={handleAppointmentDetails}
-                    />                    
+            <FlatList
+                data={appointments}
+                keyExtractor={item =>item.id}
+                renderItem={({ item }) => (
+                <Appointment 
+                    data={item}
+                    onPress={handleAppointmentDetails}
+             />                    
                     )}
                 ItemSeparatorComponent={() => <ListDivider />}
+                contentContainerStyle={{ paddingBottom: 69 }}
                 style={styles.matches}
                 showsVerticalScrollIndicator={false}                
-                />
-
-                </View>
-            </View>
+            />
         </Background>
     )
 }

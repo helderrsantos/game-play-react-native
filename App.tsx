@@ -24,7 +24,6 @@ export default function App() {
     return <AppLoading/>
   }
 
-
   return(
 <Background>
   <StatusBar

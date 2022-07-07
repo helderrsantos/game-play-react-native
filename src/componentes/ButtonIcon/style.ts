@@ -4,7 +4,7 @@ import { theme } from '../../global/styles/theme';
 export const styles = StyleSheet.create({
     container:{
         width:'100%',
-        height:50,
+        height: 50,
         backgroundColor: theme.colors.primary,
         borderRadius:8,
         flexDirection:'row',
@@ -19,7 +19,7 @@ export const styles = StyleSheet.create({
     },
     iconWrapper: {
         width:56,
-        height:56,
+        height:50,
         justifyContent:'center',
         alignItems:'center',
         borderRightWidth:1,

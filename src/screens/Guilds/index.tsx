@@ -1,54 +1,37 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { View, FlatList } from 'react-native';
-import { GuildProps } from '../../componentes/Guild';
 
-import { Guild } from '../../componentes/Guild';
+import { Guild, GuildProps } from '../../componentes/Guild';
+import { Load } from '../../componentes/Load';
 import { ListDivider } from '../../componentes/ListDivider';
 
 import { styles } from './style';
+import { api } from '../../services/api';
 
 type Props = {
     handleGuildSelect:(guild: GuildProps) => void;
 }
 
 export function Guilds({handleGuildSelect}: Props){
-   const guilds = [
-    {
-        id: '1',
-        name: 'Lendários',
-        icon: 'image.png',
-        owner: true
-    },
-    {
-        id: '2',
-        name: 'Galera do game',
-        icon: 'image.png',
-        owner: true
-    },{
-        id: '3',
-        name: 'Galera do game',
-        icon: 'image.png',
-        owner: true
-    },{
-        id: '4',
-        name: 'Galera do game',
-        icon: 'image.png',
-        owner: true
-    },{
-        id: '5',
-        name: 'Galera do game',
-        icon: 'image.png',
-        owner: true
-    },{
-        id: '6',
-        name: 'Galera do game',
-        icon: 'image.png',
-        owner: true
-    },
-   ]
+   const [guilds, setGuilds] = useState<GuildProps[]>([]);
+   const [loading, setLoading] = useState(true);
+
+   async function fetGuilds() {
+    const response = await api.get('/users/@me/guilds');
+
+    setGuilds(response.data);
+    setLoading(false);
+   }
+
+   useEffect(() => {
+    fetGuilds();
+   },[]);
+
     return(
     <View style={styles.container}>
-        <FlatList 
+        {
+            loading ? <Load /> :
+            <FlatList 
             data={guilds}
             keyExtractor={item => item.id}
             renderItem={({ item }) => (
@@ -62,7 +45,8 @@ export function Guilds({handleGuildSelect}: Props){
             contentContainerStyle={{ paddingBottom: 68, paddingTop: 103 }}
             ListHeaderComponent={() => <ListDivider isCentered />}
             style={styles.guilds}
-        />
+            />
+        }
     </View>
     )
 }

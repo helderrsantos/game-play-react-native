@@ -1,4 +1,4 @@
-# game-play-react-native
+# Game Play com React Native
 
 <p> Projeto guiado realizado na NLW pela Rocketseat <p>
 
